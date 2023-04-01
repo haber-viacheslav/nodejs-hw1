@@ -4,7 +4,7 @@
 
 node index.js --action list 
 
-[Get All](https://monosnap.com/file/SL1Sa6ARaKwlzYsE7rc6CYFoz73Tot)
+[Get All](https://monosnap.com/file/OHDTD6Tcj24VZWAPVax3RFhq8CmCxc)
 
 # Получаем контакт по id
 
