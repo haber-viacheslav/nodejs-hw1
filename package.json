@@ -7,11 +7,16 @@
 		"start": "node index.js",
 		"dev": "nodemon index.js"
 	},
-	"keywords": ["nodejs" , "js"],
+	"keywords": [
+		"nodejs",
+		"js"
+	],
 	"author": "",
 	"license": "ISC",
 	"description": "",
 	"devDependencies": {
+		"commander": "^10.0.0",
+		"nanoid": "^3.3.6",
 		"nodemon": "^2.0.22"
 	}
 }

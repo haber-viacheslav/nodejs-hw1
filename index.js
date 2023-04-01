@@ -1,12 +1,45 @@
-const { contacts, listContacts, addContact, getContactById, removeContact } = require("./contacts");
+const { listContacts, addContact, getContactById, removeContact } = require("./contacts");
+const { Command } = require("commander");
+const program = new Command();
+program
+	.option("-a, --action <type>", "choose action")
+	.option("-i, --id <type>", "user id")
+	.option("-n, --name <type>", "user name")
+	.option("-e, --email <type>", "user email")
+	.option("-p, --phone <type>", "user phone");
 
-const cont = contacts.then((res) => console.log(res));
-console.log(cont);
-//drfsvdaesdeswvf
+program.parse(process.argv);
 
-// cont.push({
-// 	id: "rsKkOQUi80UsgVPCcLZZW34dfds",
-// 	name: "Alex Mordac",
-// 	email: "elementum@sceled.net",
-// 	phone: "(748) 206-3588",
-// });
+const options = program.opts();
+
+async function invokeAction({ action, id, name, email, phone }) {
+	switch (action) {
+		case "list":
+			const allContacts = await listContacts();
+			console.log(allContacts);
+			break;
+
+		case "get":
+			const contact = await getContactById(id);
+			console.log(contact);
+
+			break;
+
+		case "add":
+			const newContact = await addContact(name, email, phone);
+			console.log(newContact);
+			break;
+
+		case "remove":
+			const newContacts = await removeContact(id);
+			console.log(newContacts);
+			break;
+
+		default:
+			console.warn("\x1B[31m Unknown action type!");
+	}
+}
+
+console.log(options);
+
+invokeAction(options);
