@@ -11,7 +11,7 @@ node index.js --action list
 node index.js --action get --id 05olLMgyVQdWRwgKfg5J6
 
 [Get by id](https://monosnap.com/file/voqQoLwwpMtWEgC6BQuDFgLvdNTShT)
-# Добавялем контакт
+# Добавляем контакт
 
 node index.js --action add --name Mango --email mango@gmail.com --phone 322-22-22
 
