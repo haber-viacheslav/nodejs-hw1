@@ -40,6 +40,4 @@ async function invokeAction({ action, id, name, email, phone }) {
 	}
 }
 
-console.log(options);
-
 invokeAction(options);

@@ -4,6 +4,7 @@ const { nanoid } = require("nanoid");
 
 const contactsPath = path.resolve("db/contacts.json");
 
+// Read all contacts
 const readContacts = async () => {
 	try {
 		const data = await fs.readFile(contactsPath, "utf8");
@@ -12,16 +13,17 @@ const readContacts = async () => {
 		console.error(err);
 	}
 };
-
+// Update contacts
 const updateContacts = (contacts) => {
 	return fs.writeFile(contactsPath, JSON.stringify(contacts), "utf8");
 };
 
-// TODO: задокументировать каждую функцию
+// Get all contacts
 function listContacts() {
 	return readContacts();
 }
 
+// Get contact by id
 async function getContactById(contactId) {
 	try {
 		const contacts = await readContacts();
@@ -31,18 +33,23 @@ async function getContactById(contactId) {
 		console.error(err);
 	}
 }
-
+// Remove contact by id
 async function removeContact(contactId) {
 	try {
 		const contacts = await readContacts();
-		const newContacts = contacts.filter((contact) => contact.id !== contactId);
+		const contact = await contacts.find((contact) => contact.id === contactId);
+		if (!contact) {
+			return "Contact with this id didn't find in contacts! ";
+		}
+		const newContacts = await contacts.filter((contact) => contact.id !== contactId);
 		await updateContacts(newContacts);
-		return newContacts;
+		return "Success removed contact";
 	} catch (err) {
 		console.error(err);
 	}
 }
 
+// Add contact
 async function addContact(name, email, phone) {
 	try {
 		const contacts = await readContacts();
